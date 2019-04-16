@@ -14,7 +14,6 @@ public class NoobChain {
             blockchain.get(0).mineBlock(difficulty);
 
         
-        
         Vote v2 = new Vote(98, "Joao");
             blockchain.add(new Block(v2, blockchain.get(blockchain.size() - 1).hash));
             System.out.println("Trying to Mine block 2... ");
@@ -25,7 +24,15 @@ public class NoobChain {
             blockchain.add(new Block(v3, blockchain.get(blockchain.size() - 1).hash));
             System.out.println("Trying to Mine block 3... ");
             blockchain.get(2).mineBlock(difficulty);
+            
+            
+        Vote v4 = new Vote(23, "Marcos");
+            blockchain.add(new Block(v3, blockchain.get(blockchain.size() - 1).hash));
+            System.out.println("Trying to Mine block 3... ");
+            blockchain.get(2).mineBlock(difficulty);
 
+            
+            
         System.out.println("\nBlockchain is Valid: " + isChainValid());
 
         String blockchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(blockchain);

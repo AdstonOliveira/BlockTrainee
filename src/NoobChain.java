@@ -1,13 +1,16 @@
 
 import com.google.gson.GsonBuilder;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class NoobChain {
 
     public static ArrayList<Block> blockchain = new ArrayList<Block>();
     public static int difficulty = 5;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Vote v1 = new Vote(55, "Jose");
             blockchain.add(new Block(v1, "0"));
             System.out.println("Trying to Mine block 1... ");
@@ -27,9 +30,9 @@ public class NoobChain {
             
             
         Vote v4 = new Vote(23, "Marcos");
-            blockchain.add(new Block(v3, blockchain.get(blockchain.size() - 1).hash));
-            System.out.println("Trying to Mine block 3... ");
-            blockchain.get(2).mineBlock(difficulty);
+            blockchain.add(new Block(v4, blockchain.get(blockchain.size() - 1).hash));
+            System.out.println("Trying to Mine block 4... ");
+            blockchain.get(3).mineBlock(difficulty);
 
             
             
@@ -37,7 +40,16 @@ public class NoobChain {
 
         String blockchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(blockchain);
         System.out.println("\nThe block chain: ");
-        System.out.println(blockchainJson);
+        
+        JOptionPane.showMessageDialog(null,blockchainJson);
+        
+        FileWriter writeFile = new FileWriter("./result/saida.json");
+         
+        writeFile.write(blockchainJson);
+        writeFile.close();
+        
+        
+        JOptionPane.showMessageDialog(null,"Esperando");
     }
 
     public static Boolean isChainValid() {

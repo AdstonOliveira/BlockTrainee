@@ -5,6 +5,7 @@ https://medium.com/programmers-blockchain/create-simple-blockchain-java-tutorial
 
 Bibliotecas: 
 gson.jar : http://central.maven.org/maven2/com/google/code/gson/gson/2.8.5/ (atual 01/04/2019)
-Bouncy Castle Jar (“ bcprov-jdk15on-159.jar ”) - Assinatura Digital
+Bouncy Castle Jar (“ bcprov-jdk15on-159.jar ”) - Assinatura Digital - https://medium.com/@cryptokass/importing-bouncy-castle-into-eclipse-24e0dda55f21
+
 
 

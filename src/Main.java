@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class NoobChain {
+public class Main {
 
     public static ArrayList<Block> blockchain = new ArrayList<Block>();
     public static int difficulty = 5;
@@ -35,22 +35,32 @@ public class NoobChain {
             blockchain.get(3).mineBlock(difficulty);
 
             
-            
+        System.out.println("\nBlockchain is Valid: " + isChainValid());
+        
+        //Realizando alteração em um dado
+        v3.setNumber(4);
+        //Checando se a blockchain continua a mesma
         System.out.println("\nBlockchain is Valid: " + isChainValid());
 
+        //Salvando em Json para compartilhamento P2P
+        
+        // erro aqui
         String blockchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(blockchain);
         System.out.println("\nThe block chain: ");
         
-        JOptionPane.showMessageDialog(null,blockchainJson);
         
         FileWriter writeFile = new FileWriter("./result/saida.json");
-         
-        writeFile.write(blockchainJson);
-        writeFile.close();
+            writeFile.write(blockchainJson);
+            writeFile.close();
+        
+        System.out.println(blockchainJson);
+            
         
         
-        JOptionPane.showMessageDialog(null,"Esperando");
     }
+    
+    
+    
 
     public static Boolean isChainValid() {
         Block currentBlock;

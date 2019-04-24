@@ -39,4 +39,12 @@ public class Block {
         
         System.out.println("Block Mined!!! : " + hash);
     }
+    
+    
+    
+    
+    public int getNumberCandidate(){
+        return dado.getNumber();
+    }
+    
 }

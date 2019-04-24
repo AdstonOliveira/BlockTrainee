@@ -3,51 +3,96 @@ import com.google.gson.GsonBuilder;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
+import java.util.Collections;
 
 public class Main {
 
     public static ArrayList<Block> blockchain = new ArrayList<Block>();
+    
     public static int difficulty = 5;
 
     public static void main(String[] args) throws IOException {
+        /*Candidato a = new Candidato(55, "Jose");*/
+        //Verificar qual a saida do terminal do eleitor
+        
         Vote v1 = new Vote(55, "Jose");
             blockchain.add(new Block(v1, "0"));
             System.out.println("Trying to Mine block 1... ");
             blockchain.get(0).mineBlock(difficulty);
 
-        
         Vote v2 = new Vote(98, "Joao");
             blockchain.add(new Block(v2, blockchain.get(blockchain.size() - 1).hash));
             System.out.println("Trying to Mine block 2... ");
             blockchain.get(1).mineBlock(difficulty);
 
-        
         Vote v3 = new Vote(23, "Marcos");
             blockchain.add(new Block(v3, blockchain.get(blockchain.size() - 1).hash));
             System.out.println("Trying to Mine block 3... ");
             blockchain.get(2).mineBlock(difficulty);
             
-            
         Vote v4 = new Vote(23, "Marcos");
             blockchain.add(new Block(v4, blockchain.get(blockchain.size() - 1).hash));
             System.out.println("Trying to Mine block 4... ");
             blockchain.get(3).mineBlock(difficulty);
-
+            
+        Vote v5 = new Vote(98, "Joao");
+            blockchain.add(new Block(v5, blockchain.get(blockchain.size() - 1).hash));
+            System.out.println("Trying to Mine block 5... ");
+            blockchain.get(4).mineBlock(difficulty);
+        
+        Vote v6 = new Vote(98, "Joao");
+            blockchain.add(new Block(v6, blockchain.get(blockchain.size() - 1).hash));
+            System.out.println("Trying to Mine block 6... ");
+            blockchain.get(5).mineBlock(difficulty);
+            
             
         System.out.println("\nBlockchain is Valid: " + isChainValid());
         
+        /*
         //Realizando alteração em um dado
         v3.setNumber(4);
         //Checando se a blockchain continua a mesma
         System.out.println("\nBlockchain is Valid: " + isChainValid());
-
-        //Salvando em Json para compartilhamento P2P
+        */
         
+        int candidate1 = 0;
+        int candidate2 = 0;
+        int candidate3 = 0;
+        
+        
+        for(Block each : blockchain){
+            int number = each.getNumberCandidate();
+            if(number == 55){
+                candidate1++;
+            }else if(number == 98){
+                candidate2++;
+            }else{
+                candidate3++;
+            }
+        }
+        
+        ArrayList<Integer> candidatos = new ArrayList();
+        
+        candidatos.add(candidate1);
+            candidatos.add(candidate2);
+            candidatos.add(candidate3);
+        
+        
+        
+        Collections.sort(candidatos);
+        System.out.println(candidatos.toString());
+        
+        Collections.reverse(candidatos);
+        System.out.println(candidatos.toString());
+
+        System.out.println(candidatos.get(0));
+        
+        
+        //Salvando em Json para compartilhamento P2P
+        /*
         // erro aqui
         String blockchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(blockchain);
-        System.out.println("\nThe block chain: ");
-        
+            System.out.println("\nThe block chain: ");
         
         FileWriter writeFile = new FileWriter("./result/saida.json");
             writeFile.write(blockchainJson);
@@ -55,6 +100,7 @@ public class Main {
         
         System.out.println(blockchainJson);
             
+        */
         
         
     }

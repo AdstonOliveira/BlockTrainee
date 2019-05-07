@@ -22,7 +22,7 @@ public class Main {
             System.out.println("Mineirando bloco 2... ");
             blockchain.get(1).mineBlock(difficulty);
             
-            v2.setNumber(10);
+//            v2.setNumber(10);
             
         Vote v3 = new Vote(23, "Marcos");
             blockchain.add(new Block(v3, blockchain.get(blockchain.size() - 1).hash));
@@ -59,17 +59,17 @@ public class Main {
         int candidate3 = 0;
         
         
-        for(Block each : blockchain){
-            int number = each.getNumberCandidate();
-            System.out.println("De Nonce is: " + each.getNonce());
-            if(number == 55){
-                candidate1++;
-            }else if(number == 98){
-                candidate2++;
-            }else{
-                candidate3++;
-            }
-        }
+        for(Block each : blockchain)
+//            int number = each.getNumberCandidate();
+            System.out.println("Nonce is: " + each.getNonce());
+//            if(number == 55){
+//                candidate1++;
+//            }else if(number == 98){
+//                candidate2++;
+//            }else{
+//                candidate3++;
+//            }
+        
         
         ArrayList<Integer> candidatos = new ArrayList();
         

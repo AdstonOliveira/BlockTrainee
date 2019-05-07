@@ -21,6 +21,8 @@ public class Block {
     }
 
     //Método cria um hash, baseando no hash anterior, no timestamp, no 'nonce' e no dado
+    
+    //Verificar o has por OpenSSl
     public String calculateHash() {
         String calculatedhash = StringUtil.applySha256( previousHash
                 + Long.toString(timeStamp)

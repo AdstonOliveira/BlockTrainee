@@ -1,6 +1,4 @@
 
-import com.google.gson.GsonBuilder;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,39 +8,40 @@ public class Main {
     public static ArrayList<Block> blockchain = new ArrayList<Block>();
     
     public static int difficulty = 5;
-
+    
     public static void main(String[] args) throws IOException {
-        /*Candidato a = new Candidato(55, "Jose");*/
         //Verificar qual a saida do terminal do eleitor
         
         Vote v1 = new Vote(55, "Jose");
             blockchain.add(new Block(v1, "0"));
-            System.out.println("Trying to Mine block 1... ");
+            System.out.println("Mineirando bloco 1... ");
             blockchain.get(0).mineBlock(difficulty);
 
         Vote v2 = new Vote(98, "Joao");
             blockchain.add(new Block(v2, blockchain.get(blockchain.size() - 1).hash));
-            System.out.println("Trying to Mine block 2... ");
+            System.out.println("Mineirando bloco 2... ");
             blockchain.get(1).mineBlock(difficulty);
-
+            
+            v2.setNumber(10);
+            
         Vote v3 = new Vote(23, "Marcos");
             blockchain.add(new Block(v3, blockchain.get(blockchain.size() - 1).hash));
-            System.out.println("Trying to Mine block 3... ");
+            System.out.println("Mineirando bloco 3... ");
             blockchain.get(2).mineBlock(difficulty);
             
         Vote v4 = new Vote(23, "Marcos");
             blockchain.add(new Block(v4, blockchain.get(blockchain.size() - 1).hash));
-            System.out.println("Trying to Mine block 4... ");
+            System.out.println("Mineirando bloco 4... ");
             blockchain.get(3).mineBlock(difficulty);
             
         Vote v5 = new Vote(98, "Joao");
             blockchain.add(new Block(v5, blockchain.get(blockchain.size() - 1).hash));
-            System.out.println("Trying to Mine block 5... ");
+            System.out.println("Mineirando bloco 5... ");
             blockchain.get(4).mineBlock(difficulty);
         
         Vote v6 = new Vote(98, "Joao");
             blockchain.add(new Block(v6, blockchain.get(blockchain.size() - 1).hash));
-            System.out.println("Trying to Mine block 6... ");
+            System.out.println("Mineirando bloco 6... ");
             blockchain.get(5).mineBlock(difficulty);
             
             
@@ -62,6 +61,7 @@ public class Main {
         
         for(Block each : blockchain){
             int number = each.getNumberCandidate();
+            System.out.println("De Nonce is: " + each.getNonce());
             if(number == 55){
                 candidate1++;
             }else if(number == 98){
@@ -74,18 +74,18 @@ public class Main {
         ArrayList<Integer> candidatos = new ArrayList();
         
         candidatos.add(candidate1);
-            candidatos.add(candidate2);
-            candidatos.add(candidate3);
+        candidatos.add(candidate2);
+        candidatos.add(candidate3);
         
         
         
         Collections.sort(candidatos);
-        System.out.println(candidatos.toString());
+//        System.out.println(candidatos.toString());
         
         Collections.reverse(candidatos);
-        System.out.println(candidatos.toString());
+//        System.out.println(candidatos.toString());
 
-        System.out.println(candidatos.get(0));
+        System.out.println("Maior numero de votos: " + candidatos.get(0));
         
         
         //Salvando em Json para compartilhamento P2P

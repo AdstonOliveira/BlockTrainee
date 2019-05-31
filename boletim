@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<boletins>
+	<boletim>
+		<urna>urna 1</urna>
+		<votantes>1000</votantes>
+		<candidatoA>100</candidatoA>
+		<candidatoA>800</candidatoA>
+		<brancos>100</brancos>
+		<nulos>100</nulos>
+	</boletim>
+	
+</boletins>
+

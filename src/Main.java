@@ -1,7 +1,8 @@
 
+import MetodosXML.SelectXML;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Main {
 
@@ -11,53 +12,31 @@ public class Main {
     
     public static void main(String[] args) throws IOException {
         //Verificar qual a saida do terminal do eleitor
-        
-        Vote v1 = new Vote(55, "Jose");
-            blockchain.add(new Block(v1, "0"));
-            System.out.println("Mineirando bloco 1... ");
-            blockchain.get(0).mineBlock(difficulty);
+            File xml = SelectXML.selected();
+        if( xml != null ){
+           blockchain.add( new Block(xml) );
+           blockchain.get(0).mineBlock(difficulty);
+           System.out.println(blockchain.get(0).hash);
 
-        Vote v2 = new Vote(98, "Joao");
-            blockchain.add(new Block(v2, blockchain.get(blockchain.size() - 1).hash));
-            System.out.println("Mineirando bloco 2... ");
+            blockchain.add( new Block(xml, blockchain.get(blockchain.size() - 1).hash) );
             blockchain.get(1).mineBlock(difficulty);
+            System.out.println(blockchain.get(1).hash);
             
-//            v2.setNumber(10);
             
-        Vote v3 = new Vote(23, "Marcos");
-            blockchain.add(new Block(v3, blockchain.get(blockchain.size() - 1).hash));
-            System.out.println("Mineirando bloco 3... ");
-            blockchain.get(2).mineBlock(difficulty);
             
-        Vote v4 = new Vote(23, "Marcos");
-            blockchain.add(new Block(v4, blockchain.get(blockchain.size() - 1).hash));
-            System.out.println("Mineirando bloco 4... ");
-            blockchain.get(3).mineBlock(difficulty);
             
-        Vote v5 = new Vote(98, "Joao");
-            blockchain.add(new Block(v5, blockchain.get(blockchain.size() - 1).hash));
-            System.out.println("Mineirando bloco 5... ");
-            blockchain.get(4).mineBlock(difficulty);
+            
+            
+            System.out.println("\nBlockchain is Valid: " + isChainValid());
         
-        Vote v6 = new Vote(98, "Joao");
-            blockchain.add(new Block(v6, blockchain.get(blockchain.size() - 1).hash));
-            System.out.println("Mineirando bloco 6... ");
-            blockchain.get(5).mineBlock(difficulty);
-            
-            
-        System.out.println("\nBlockchain is Valid: " + isChainValid());
         
+        }
         /*
         //Realizando alteração em um dado
         v3.setNumber(4);
         //Checando se a blockchain continua a mesma
         System.out.println("\nBlockchain is Valid: " + isChainValid());
         */
-        
-        int candidate1 = 0;
-        int candidate2 = 0;
-        int candidate3 = 0;
-        
         
         for(Block each : blockchain)
 //            int number = each.getNumberCandidate();
@@ -71,23 +50,9 @@ public class Main {
 //            }
         
         
-        ArrayList<Integer> candidatos = new ArrayList();
+     
         
-        candidatos.add(candidate1);
-        candidatos.add(candidate2);
-        candidatos.add(candidate3);
-        
-        
-        
-        Collections.sort(candidatos);
-//        System.out.println(candidatos.toString());
-        
-        Collections.reverse(candidatos);
-//        System.out.println(candidatos.toString());
-
-        System.out.println("Maior numero de votos: " + candidatos.get(0));
-        
-        
+     
         //Salvando em Json para compartilhamento P2P
         /*
         // erro aqui

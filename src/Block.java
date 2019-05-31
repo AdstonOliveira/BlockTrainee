@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.Date;
 
 /**
@@ -8,21 +9,32 @@ import java.util.Date;
 public class Block {
     public String hash; // Hash do atual
     public String previousHash; // Hash anterior
-    private Vote dado; //Dado a ser adicionado ao bloco
+    private File dado; //Dado a ser adicionado ao bloco
     private long timeStamp; //data atual 
     private int nonce;
+    
+    private final int qtdeTransacoes  = 10;
 
 //Block Constructor.
-    public Block( Vote dado, String previousHash ) {
+    public Block( File dado, String previousHash ) {
         this.dado = dado;
         this.previousHash = previousHash;
         this.timeStamp = new Date().getTime();
         this.hash = calculateHash();
     }
+    
+    public Block(File dado){
+        this.dado = dado;
+        this.previousHash = "Genesis Block";
+        this.timeStamp = new Date().getTime();
+        this.hash = calculateHash();
+    }
+    
+    
 
     //Método cria um hash, baseando no hash anterior, no timestamp, no 'nonce' e no dado
     
-    //Verificar o has por OpenSSl
+    //Verificar o hasH por OpenSSl
     public String calculateHash() {
         String calculatedhash = StringUtil.applySha256( previousHash
                 + Long.toString(timeStamp)
@@ -51,10 +63,28 @@ public class Block {
     public int getNonce(){
         return this.nonce;
     }
-    
-    
-    public int getNumberCandidate(){
-        return dado.getNumber();
+
+    public String getHash() {
+        return hash;
     }
+
+    public String getPreviousHash() {
+        return previousHash;
+    }
+
+    public File getDado() {
+        return dado;
+    }
+
+    public long getTimeStamp() {
+        return timeStamp;
+    }
+
+    public int getQtdeTransacoes() {
+        return qtdeTransacoes;
+    }
+    
+    
+    
     
 }

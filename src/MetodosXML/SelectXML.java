@@ -12,7 +12,9 @@ public abstract class SelectXML {
     
     
     public static File selected(){
+        
         JFileChooser select = new JFileChooser(".\\");
+        
         select.setDialogTitle("Informe um arquivo de tipo XML");
         select.setFileSelectionMode(JFileChooser.FILES_ONLY);
         select.setAcceptAllFileFilterUsed(false);

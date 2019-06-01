@@ -2,15 +2,12 @@
 import MetodosXML.SelectXML;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class Main {
-
     //public static ArrayList<Block> blockchain = new ArrayList<Block>();
-    
-    
-    
+    //DESiGN PATTERN ADAPTER
+
     public static void main(String[] args) throws IOException {
         Blockchain b = new Blockchain();
         //Verificar qual a saida do terminal do eleitor
@@ -19,16 +16,18 @@ public class Main {
            /*//blockchain.add( new Block(xml) );
            blockchain.get(0).mineBlock(difficulty);
            System.out.println(blockchain.get(0).hash);
-
             //blockchain.add( new Block(xml, blockchain.get(blockchain.size() - 1).hash) );
             blockchain.get(1).mineBlock(difficulty);
             System.out.println(blockchain.get(1).hash);
             */
-           JOptionPane.showMessageDialog(null,b.addTransaction(xml));
-           JOptionPane.showMessageDialog(null,b.addTransaction(xml));
-           JOptionPane.showMessageDialog(null,b.addTransaction(xml));
-           JOptionPane.showMessageDialog(null,b.addTransaction(xml));
-           JOptionPane.showMessageDialog(null,b.addTransaction(xml));
+            
+            
+           JOptionPane.showMessageDialog(null, b.addTransaction(xml));
+           
+           JOptionPane.showMessageDialog(null, b.addTransaction(xml));
+           JOptionPane.showMessageDialog(null, b.addTransaction(xml));
+           JOptionPane.showMessageDialog(null, b.addTransaction(xml));
+           JOptionPane.showMessageDialog(null, b.addTransaction(xml));
            
            JOptionPane.showMessageDialog(null,b.addTransaction(xml));
            JOptionPane.showMessageDialog(null,b.addTransaction(xml));

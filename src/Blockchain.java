@@ -71,7 +71,7 @@ public class Blockchain {
         
         return null;
     }
-    
+    //RMI URNA ELETRONICA
     
     public Boolean isChainValid(){
         Block currentBlock;

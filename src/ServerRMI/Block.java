@@ -1,9 +1,10 @@
-package Blockchain;
+package ServerRMI;
 
 import Util.StringUtil;
-import Blockchain.Blockchain;
+import ServerRMI.Blockchain;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -11,7 +12,7 @@ import javax.swing.JOptionPane;
  *
  * @author Suporte04
  */
-public class Block {
+public class Block implements Serializable{
     public final String previousHash; // Hash anterior
     
     private long timeStamp; //data atual 

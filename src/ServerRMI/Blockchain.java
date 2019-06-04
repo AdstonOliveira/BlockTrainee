@@ -1,47 +1,58 @@
-package Blockchain;
+package ServerRMI;
 
+import java.rmi.server.UnicastRemoteObject;
 import java.io.File;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 /**
  *
  * @author Suporte-04
  */
-public class Blockchain {
+public class Blockchain extends UnicastRemoteObject implements InterfaceBlockChain{
+    private static final long serialVersionUID = 1L;
+    
     private final ArrayList <Block> blockchain = new ArrayList();
-    private ArrayList<Block> pool = new ArrayList();//COMPARTILHADO
+    
+    private final ArrayList<Block> pool = new ArrayList();//COMPARTILHADO
     
     //private int difficulty = 5;
     
-    public Blockchain(){
+    public Blockchain() throws RemoteException{
+       super();
         if( !this.addGenesis() )
             System.out.println("Ocorreu um erro ao inicializar a blockchain");
         
+            
         JOptionPane.showMessageDialog(null,"Blockchain inicializada com sucesso\nOperando no bloco Genesis");
-
+        
     }
     
-    private boolean addGenesis(){
+    @Override
+    public boolean addGenesis(){
         if( this.blockchain.isEmpty() ){
            Block genesis = new Block(this);
-           this.blockchain.add(genesis);
+           this.pool.add(genesis); //Adiciona ao pool
+           
            return true;
         }
         return false;
     }
 
 
-    private void newBlock(){
+    @Override
+    public void newBlock(){
         if( this.blockchain.isEmpty() ){
             this.addGenesis();
         }else{
              Block block = new Block( this, this.getLast().getHash() );
-             this.blockchain.add(block);
+             this.pool.add(block);
         }
     }
     
-    public boolean addTransaction( File file ){
-        if( this.getLast().add_transation(file) ){
+    @Override
+    public boolean addTransaction( File file ){ // CANDIDADTO INTERFACE REMOTA
+        if( this.getOnPool().add_transation(file) ){
             return true;
             //Adicionado com sucesso
         }else{
@@ -49,6 +60,14 @@ public class Blockchain {
              this.addTransaction(file);
         }
         return false;
+    }
+    
+    public Block getOnPool(){
+        return this.pool.get( this.getSizePool()-1 );
+    }
+    
+    public int getSizePool(){
+        return this.pool.size();
     }
     
     
@@ -67,7 +86,8 @@ public class Blockchain {
     }
     //RMI URNA ELETRONICA
     
-    public Boolean isChainValid(){
+    @Override
+    public boolean isChainValid(){ // CANDIDATO A SER REMOTO
         Block currentBlock;
         Block previousBlock;
         int difficulty = 5;
@@ -99,7 +119,7 @@ public class Blockchain {
     
     }
     
-    public void printBlockChain(){
+    public void printBlockChain(){ // CANDIDATO A SER REMOTO
         
         for( Block each : blockchain ){
             JOptionPane.showMessageDialog( null, Block.printBlock(each) );

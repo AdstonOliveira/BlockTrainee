@@ -1,5 +1,5 @@
 
-import Blockchain.Blockchain;
+import ServerRMI.Blockchain;
 
 import Util.SelectXML;
 import java.io.File;
@@ -11,9 +11,10 @@ public class Main {
     //DESiGN PATTERN ADAPTER
 
     public static void main(String[] args) throws IOException {
-        
         JOptionPane.showMessageDialog(null,"Iniciando BC");
         Blockchain b = new Blockchain();
+        
+        
         File a = SelectXML.selected();
         
         if( a != null){

@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
  */
 public class Blockchain {
     private final ArrayList <Block> blockchain = new ArrayList();
-    private ArrayList<Block> pool = new ArrayList();
+    private ArrayList<Block> pool = new ArrayList();//COMPARTILHADO
     
     //private int difficulty = 5;
     

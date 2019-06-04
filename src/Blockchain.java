@@ -1,24 +1,27 @@
 import java.io.File;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Suporte-04
  */
 public class Blockchain {
     private final ArrayList <Block> blockchain = new ArrayList();
+    private ArrayList<Block> pool = new ArrayList();
+    
     //private int difficulty = 5;
     
     public Blockchain(){
         if( !this.addGenesis() )
             System.out.println("Ocorreu um erro ao inicializar a blockchain");
         
-        System.out.println("Blockchain inicializada com sucesso\nOperando no bloco Genesis");
-        
+        JOptionPane.showMessageDialog(null,"Blockchain inicializada com sucesso\nOperando no bloco Genesis");
+
     }
     
     private boolean addGenesis(){
         if( this.blockchain.isEmpty() ){
-           Block genesis = new Block(5);
+           Block genesis = new Block(this);
            this.blockchain.add(genesis);
            return true;
         }
@@ -26,47 +29,36 @@ public class Blockchain {
     }
 
 
-    private boolean addBlock( Block bloco ){
+    private void newBlock(){
         if( this.blockchain.isEmpty() ){
             this.addGenesis();
         }else{
-            if( this.getLast().isFull() ){
-                Block block = new Block(this.getLast().getHash(), 5);
-                this.blockchain.add(block);
-                return true;
-            }
-            return false;
+             Block block = new Block( this, this.getLast().getHash() );
+             this.blockchain.add(block);
         }
-        return true;
     }
     
     public boolean addTransaction( File file ){
-        
         if( this.getLast().add_transation(file) ){
-            System.out.println("Adicionado ao bloco com Sucesso!!!!!");
             return true;
+            //Adicionado com sucesso
         }else{
-            if( this.getLast().isFull() ){
-                this.getLast().calculate_hash();
-                
-                this.addBlock( new Block(getLast().getQtdeTransacoes()) );
-                return this.addTransaction(file);
-            }
-            System.out.println("Falha ao adicionar, por favor verifique");
-            return false;
+             this.newBlock();
+             this.addTransaction(file);
         }
+        return false;
     }
     
     
-    public int getSize(){
+    public int getSizeBlocks(){
         return this.blockchain.size();
     }
     public Block getLast(){
-        return this.blockchain.get( this.getSize()-1 );
+        return this.blockchain.get( this.getSizeBlocks()-1 );
     }
     
     public Block getGenesis(){
-        if(this.getSize() > 0)
+        if(this.getSizeBlocks() > 0)
             return this.blockchain.get(0);
         
         return null;
@@ -81,9 +73,10 @@ public class Blockchain {
         String hashTarget = new String( new char[difficulty] ).replace('\0', '0');
 
         //loop through blockchain to check hashes:
-        for(int i = 1; i < this.getSize(); i++) {
+        for(int i = 1; i < this.getSizeBlocks(); i++) {
             currentBlock = this.getLast();
             previousBlock = this.blockchain.get(i - 1);
+            
             //compare registered hash and calculated hash:
             if (!currentBlock.hash.equals(currentBlock.calculate_hash())) {
                 System.out.println("Current Hashes not equal");
@@ -102,6 +95,15 @@ public class Blockchain {
         }
         return true;
     
+    }
+    
+    public void printBlockChain(){
+        
+        for( Block each : blockchain ){
+            JOptionPane.showMessageDialog( null, Block.printBlock(each) );
+            System.out.println( Block.printBlock(each) );
+        
+        }
     }
     
     

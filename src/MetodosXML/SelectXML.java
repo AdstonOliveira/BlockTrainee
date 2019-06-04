@@ -24,10 +24,10 @@ public abstract class SelectXML {
         int action = select.showOpenDialog(null);
         
             if(action == 0){
-                JOptionPane.showMessageDialog(null, "Selecionado com sucesso!!!");
+                JOptionPane.showMessageDialog(null, "Arquivo Selecionado!!!");
                 return select.getSelectedFile();
             }else
-                JOptionPane.showMessageDialog(null, "Nenhum arquivo selecionado\nEncerrando processo", "Encerrando sem selecionar", 2);
+                JOptionPane.showMessageDialog(null, "Nenhum arquivo selecionado", "Selecione um item", 2);
             return null;
     }
     

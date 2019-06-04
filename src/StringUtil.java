@@ -1,4 +1,8 @@
 import java.security.MessageDigest;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class StringUtil {
 	//Applies Sha256 to a string and returns the result. 
@@ -19,4 +23,13 @@ public class StringUtil {
 			throw new RuntimeException(e);
 		}
 	}	
+        
+        public static String formatDate(long date){
+            Date dt = new Date (date);
+            DateFormat df = new SimpleDateFormat ("dd/MM/yyyy HH:mm:ss.SSS");
+            df.setTimeZone (TimeZone.getTimeZone ("GMT"));
+            return (df.format (dt));
+        }
+        
+        
 }

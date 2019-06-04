@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MetodosXML;
+package Util;
 
 import java.io.IOException;
 import java.util.logging.Level;

@@ -1,4 +1,4 @@
-package MetodosXML;
+package Util;
 
 import java.io.File;
 import javax.swing.JFileChooser;

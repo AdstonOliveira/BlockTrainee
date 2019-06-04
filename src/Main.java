@@ -1,5 +1,7 @@
 
-import MetodosXML.SelectXML;
+import Blockchain.Blockchain;
+
+import Util.SelectXML;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.JOptionPane;

@@ -1,3 +1,8 @@
+package Blockchain;
+
+import Util.StringUtil;
+import Blockchain.Blockchain;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
